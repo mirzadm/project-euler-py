@@ -3,8 +3,13 @@
 from math import sqrt
 
 
-def is_prime_wrt_factors(m, primes):
-    """Checks primality of m with respect to given prime factors."""
+def is_prime(m, primes):
+    """Checks primality of m given "enough" prime numbers.
+
+    Args:
+        m: Number to check.
+        primes: A list inlcuding at least all prime numbers <= sqrt(m)
+    """
     m_sqrt = int(sqrt(m))
     is_prime = True
     i = 0
@@ -18,11 +23,11 @@ def is_prime_wrt_factors(m, primes):
 def prime_numbers_up_to(x):
     """Returns list of prime numbers <= x.
     
-    Uses `is_prime_wrt_factors`.
+    Uses `is_prime`.
     """
     primes = []
     for i in range(2, x+1):
-        if is_prime_wrt_factors(i, primes):
+        if is_prime(i, primes):
             primes.append(i)
     return primes
 
