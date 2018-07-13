@@ -8,7 +8,7 @@ from src.p2 import sum_of_even_fibo_nums
 class TestSumOfFibo(unittest.TestCase):
 
     def test_sum_of_even_fibo_nums(self):
-        self.assertEqual(sum_of_even_fibo_nums(1), 1)
+        self.assertEqual(sum_of_even_fibo_nums(1), 0)
         self.assertEqual(sum_of_even_fibo_nums(2), 2)
         self.assertEqual(sum_of_even_fibo_nums(3), 2)
         self.assertEqual(sum_of_even_fibo_nums(4), 2)
