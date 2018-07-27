@@ -16,6 +16,11 @@ class TestP12(unittest.TestCase):
         self.assertEqual(triangular_nums, [1, 3, 6, 10, 15])
 
     def test_find_special_triangular_num(self):
+        self.assertEqual(find_special_triangular_num(0), 1)
+        self.assertEqual(find_special_triangular_num(1), 3)
+        self.assertEqual(find_special_triangular_num(2), 6)
+        self.assertEqual(find_special_triangular_num(3), 6)
+        self.assertEqual(find_special_triangular_num(4), 28)
         self.assertEqual(find_special_triangular_num(5), 28)
 
 
