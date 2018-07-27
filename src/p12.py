@@ -4,7 +4,11 @@ from src.p5 import prime_factorization
 
 
 def triangular_number_generator():
-    """Creates a generator for triangular numbers."""
+    """Creates a generator for triangular numbers.
+
+    Triangular numbers:
+    1, 3, 6, 10, 15, 21, 28, ...
+    """
     current = 0
     sum = 0
     while True:
