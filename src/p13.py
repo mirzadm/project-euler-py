@@ -1,8 +1,8 @@
 """Project Euler: Problem 13."""
 
 
-def number_string_to_list(number_string, digit_width):
-    """Converts a string-formatted number to a list of partial integers.
+def string_number_to_list(number_string, digit_width):
+    """Converts a string-formatted number to a list of its sub-digits.
 
     Starting from right, slices the string to `digit_width` size pieces.
     Then converts each slice to an integer and stores it in a list.
@@ -38,7 +38,8 @@ def number_string_to_list(number_string, digit_width):
 def add_int_lists_with_carry(first_int_list, second_int_list, digit_width):
     """Adds two lists of integers from right to left with carry.
 
-    Assumes each integer has no more than `digit_width` digits.
+    Assumes each integer has no more than `digit_width` digits. 
+
     Example:
         `digit_width`:                   2
         `first_int_list`:   [1,  0, 99] --> 10099
@@ -83,3 +84,32 @@ def add_int_lists_with_carry(first_int_list, second_int_list, digit_width):
         result.insert(0, carry)
 
     return result
+
+
+def add_up_string_numbers(string_numbers, digit_width):
+    """Adds a list of string numbers.
+
+    The sum is calculated `digit_width` digits at a time.
+
+    Args:
+        `string_numbers`: A list of string-formatted unsigned integers.
+        `digit_width`: Positive integer.
+    Returns:
+        A string representation of sum value.
+    Raises:
+        ValueError: For `digit_width` less than 1.
+    """
+    if digit_width < 1:
+        raise ValueError('Invalid input argument value.')
+
+    sum_array = []
+    for string_num in string_numbers:
+        num_array = string_number_to_list(string_num, digit_width)
+        sum_array =  add_int_lists_with_carry(sum_array, num_array,
+                                              digit_width)
+    sum_string = ''
+    if len(sum_array) > 0:
+        sum_string = str(sum_array[0])
+        sum_string += ''.join(str(sum_array[i]).zfill(digit_width) for i in
+                              range(1, len(sum_array)))
+    return sum_string
