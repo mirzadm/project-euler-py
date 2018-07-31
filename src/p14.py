@@ -9,7 +9,14 @@ def calculate_sequence_length(n, length_dict):
         n --> 3n+1  if n odd
         ends        if n is 1
 
-    Uses and updates `length_dict` dicitonary in the process.
+    Reads and mutates `length_dict` dicitonary in the process.
+    
+    Args:
+        `n`: Positive integer.
+        `length_dict`: A dictionary of sequence terms and their corresponding
+                       lengths.
+    Returns:
+            Length of the sequence 
     """
     if n < 1:
         raise ValueError('Invalid input argument.')
