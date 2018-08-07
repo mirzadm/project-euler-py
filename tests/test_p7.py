@@ -7,8 +7,10 @@ from src.p7 import nth_prime_number
 
 class TestP7(unittest.TestCase):
 
-    def test_nth_prime_number(self):
+    def test_nth_prime_number_exception(self):
         self.assertRaises(IndexError, nth_prime_number, 0)
+
+    def test_nth_prime_number_expected(self):
         self.assertEqual(nth_prime_number(1), 2)
         self.assertEqual(nth_prime_number(2), 3)
         self.assertEqual(nth_prime_number(3), 5)
