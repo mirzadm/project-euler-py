@@ -1,41 +1,50 @@
-"""nth prime number."""
-
-from math import sqrt
+"""Project Euler: Problem 7."""
 
 
 def is_prime(m, primes):
-    """Checks primality of m given "enough" prime numbers.
+    """Checks primality of `m` with respect to given `primes`.
 
+    For the function to work properly, `primes` must at least have all the
+    prime numbers up to square root of `m`.
+    
     Args:
-        m: Number to check.
-        primes: A sorted list inlcuding all prime numbers <= sqrt(m)
+        `m`: Integer value greater than 1.
+        `primes`: A list of prime numbers. 
+    Raises:
+        ValueError: For `m` less than or equal to 1.
     """
-    m_sqrt = int(sqrt(m))
-    is_prime = True
+    if m <= 1:
+        raise ValueError('Invalid input argument.')
+
+    sq_root = int(m ** 0.5)
     i = 0
-    while i < len(primes) and primes[i] <= m_sqrt and is_prime:
+    while i < len(primes) and primes[i] <= sq_root:
         if m % primes[i] == 0:
-            is_prime = False
+            return False
         i += 1
-    return is_prime
+    return True
 
 
 def nth_prime_number(n):
     """Returns nth prime number.
     
     Uses `is_prime`.
+
     Args:
-        n: Integer >= 1.
+        `n`: Positive integer.
     Raises:
-        IndexError: If n < 1.
+        ValueError: For `n` less than 1.
     """
     if n < 1:
-        raise IndexError('Input argument must be >= 1.')
+        raise IndexError('Invalid input argument.')
+
     primes = []
     candidate = 2
-    while len(primes) < n:
+    num_of_primes = 0
+    while num_of_primes != n:
         if is_prime(candidate, primes):
             primes.append(candidate)
+            num_of_primes += 1
         candidate += 1
 
     return primes[-1]
