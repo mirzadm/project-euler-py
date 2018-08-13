@@ -2,13 +2,15 @@
 
 import unittest
 
-from src.p8 import find_adj_digits_with_max_product as adj_digits
+from src.p8 import find_current_len_with_max_product as adj_digits
 
 
 class TestP8(unittest.TestCase):
 
     def test_exception(self):
         self.assertRaises(ValueError, adj_digits, '', 1)
+        self.assertRaises(ValueError, adj_digits, '56', 3)
+        self.assertRaises(ValueError, adj_digits, '123', 0)
 
     def test_without_zeros(self):
         self.assertEqual(adj_digits('2', 1), (2, 0))
