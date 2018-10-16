@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p11 import max_adj_prod
+from src.p011 import max_adj_prod
 
 
 class TestP11(unittest.TestCase):

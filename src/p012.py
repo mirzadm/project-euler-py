@@ -1,6 +1,6 @@
 """Project Euler: Problem 12."""
 
-from src.p5 import prime_factorization
+from src.p005 import prime_factorization
 
 
 def triangular_number_generator():

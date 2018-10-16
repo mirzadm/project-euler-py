@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p4 import is_palindrome, convert_num_to_digits_list
+from src.p004 import is_palindrome, convert_num_to_digits_list
 
 
 class TestLargestPalindrome(unittest.TestCase):

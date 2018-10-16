@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p9 import special_pythagorean_triple as pyth_triple
+from src.p009 import special_pythagorean_triple as pyth_triple
 
 
 class TestP9(unittest.TestCase):

@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p3 import largest_prime_factor
+from src.p003 import largest_prime_factor
 
 
 class TestP3(unittest.TestCase):

@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p7 import nth_prime_number
+from src.p007 import nth_prime_number
 
 
 class TestP7(unittest.TestCase):

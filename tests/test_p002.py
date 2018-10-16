@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p2 import sum_of_even_fibo_nums
+from src.p002 import sum_of_even_fibo_nums
 
 
 class TestSumOfFibo(unittest.TestCase):

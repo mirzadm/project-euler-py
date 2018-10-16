@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p10 import sum_of_primes
+from src.p010 import sum_of_primes
 
 
 class TestP10(unittest.TestCase):

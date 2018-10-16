@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p6 import square_of_sum_minus_sum_of_squares as square_sum_diff
+from src.p006 import square_of_sum_minus_sum_of_squares as square_sum_diff
 
 
 class TestP6(unittest.TestCase):

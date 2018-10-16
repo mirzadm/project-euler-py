@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p12 import triangular_number_generator, find_special_triangular_num
+from src.p012 import triangular_number_generator, find_special_triangular_num
 
 
 class TestP12(unittest.TestCase):

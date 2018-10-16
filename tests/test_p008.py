@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p8 import find_current_len_with_max_product as adj_digits
+from src.p008 import find_current_len_with_max_product as adj_digits
 
 
 class TestP8(unittest.TestCase):

@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p5 import prime_factorization, smallest_divisible_number
+from src.p005 import prime_factorization, smallest_divisible_number
 
 
 class TestP5(unittest.TestCase):

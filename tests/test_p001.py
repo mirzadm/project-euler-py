@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p1 import sum_of_multiples_3_or_5
+from src.p001 import sum_of_multiples_3_or_5
 
 
 class TestSumOfMultiples(unittest.TestCase):
