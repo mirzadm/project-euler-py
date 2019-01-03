@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.p011 import max_adj_prod
+from src.p011 import grid_max_adjacent_elements_product as max_adj_prod
 
 
 class TestP11(unittest.TestCase):
