@@ -1,41 +1,40 @@
 """Project Euler: Problem 14."""
 
 
-def calculate_sequence_length(n, length_dict):
-    """Calculates the sequence length for `n`.
+def update_sequence_length_map(n, num_to_seq_len_map={}):
+    """Updates map with required/missing items for `n`s sequence.
 
-    The sequence: 
+    Next element in `n`s sequence:
         n --> n/2   if n even
         n --> 3n+1  if n odd
-        ends        if n is 1
-    
+        1 --> 1
+
     Example:
         Sequence starting at 10:
             10, 5, 16, 8, 4, 2, 1
-        Corresponding dicitonary:
+        Corresponding `num_to_seq_len_map`:
             {10: 7, 5: 6, 16: 5, 8: 4, 4: 3, 2: 2, 1: 1}
-
-    Reads and mutates `length_dict` dicitonary.
     
     Args:
         `n`: Positive integer.
-        `length_dict`: A dictionary of previously calculated sequence terms
-                       and their corresponding lengths.
+        `num_to_seq_len_map`: Map of numbers to their sequence lengths.
     Returns:
-            Length of the sequence starting at `n`
+        Updated sequence map
     """
     if n < 1:
         raise ValueError('Invalid input argument.')
 
-    if n not in length_dict:
+    if n not in num_to_seq_len_map:
         if n == 1:
-            length_dict[n] = 1
+            num_to_seq_len_map[n] = 1
+        elif n % 2 == 0:
+            num_to_seq_len_map = update_sequence_length_map(
+                n // 2, num_to_seq_len_map
+            )
+            num_to_seq_len_map[n] = 1 + num_to_seq_len_map[n // 2]
         else:
-            if n % 2 == 0:
-                length_dict[n] = 1 + calculate_sequence_length(n // 2,
-                                                               length_dict)
-            else:
-                length_dict[n] = 1 + calculate_sequence_length(3 * n + 1,
-                                                               length_dict)
-
-    return length_dict[n]
+            num_to_seq_len_map = update_sequence_length_map(
+                3 * n + 1, num_to_seq_len_map
+            )
+            num_to_seq_len_map[n] = 1 + num_to_seq_len_map[3 * n + 1]
+    return num_to_seq_len_map
