@@ -1,24 +1,37 @@
 """Project Euler: Problem 15"""
 
 
-def num_paths_through_grid(start_row, start_col):
-    if start_row == 0 and start_col == 0:
-        return 0
-    num_paths_map = {}
-    _num_paths_through_grid(start_row, start_col, num_paths_map)
-    return num_paths_map[(start_row, start_col)]
+def update_path_count_map(start_row, start_col, path_count_map):
+    """Updates map (if needed) with number of paths from coordinates to origin.
+
+    Args:
+        `start_row`, `start_col`: Coordinates. Non-negative integer.
+        `path_count_map`: Dictionary of coordinate tuples to number paths.
+    Returns:
+        Dictionary of coordinate tuples to number paths. 
+    """
+    if (start_row, start_col) not in path_count_map:     
+        if start_row == 0 or start_col == 0:
+            path_count_map[start_row, start_col] = 1
+            path_count_map[start_col, start_row] = 1
+
+        else:
+            path_count_map = update_path_count_map(
+                start_row - 1, start_col, path_count_map
+            )
+            path_count_map = update_path_count_map(
+                start_row, start_col - 1, path_count_map
+            )
+            total = (
+                path_count_map[(start_row - 1, start_col)]
+                + path_count_map[(start_row, start_col - 1)]
+            )
+            path_count_map[start_row, start_col] = total
+            path_count_map[start_col, start_row] = total
+    return path_count_map
 
 
-def _num_paths_through_grid(start_row, start_col, num_paths_map={}):
-    if start_row == 0 or start_col == 0:
-        num_paths_map[start_row, start_col] = 1
-    elif (
-        (start_row, start_col) not in num_paths_map
-        and (start_col, start_row) not in num_paths_map
-    ):
-        num_paths_through_grid(start_row - 1, start_col, num_paths_map)
-        num_paths_through_grid(start_row, start_col - 1, num_paths_map)
-        num_paths_map[start_row, start_col] = (
-            num_paths_map[(start_row - 1, start_col)]
-            + num_paths_map[(start_row, start_col - 1)]
-        )
+def num_paths_in_grid(start_row, start_col):
+    """A wrapper function to get number of paths for coordinates."""
+    path_count_map = update_path_count_map(start_row, start_col, {})
+    return path_count_map[(start_row, start_col)]
