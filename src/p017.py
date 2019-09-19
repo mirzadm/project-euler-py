@@ -1,7 +1,7 @@
 """Project Euler: Problem 16"""
 
 
-num_to_words_map = {
+two_digit_base_words = {
     0: "zero",
     1: "one",
     2: "two",
@@ -30,46 +30,64 @@ num_to_words_map = {
     70: "seventy",
     80: "eighty",
     90: "ninety",
-    1000: "thousand",
 }
 
 
-def num_to_words(num):
-    """Converts a number `num` to its written words.
+def two_digit_num_to_words(num):
+    """Converts a 2-digit number `num` to its written words.
 
     Args:
-        `num`: Integer between 0 and 1000 (inclusive).
+        `num`: Integer between 0 and 99 (inclusive).
     Returns:
         Number writtin in words as a string.
     Raises:
         ValueError: For out of range `num`.
     """
-    if num < 0 or num > 1000:
+    if num < 0 or num > 99:
         raise ValueError("Number must be between 0 and 1000.")
 
-    if num == 0:
-        return "zero"
-    if num == 1000:
-        return "one thousand"
-
-    words = ""
-    thrid_digit = num // 100
-    second_digit = (num % 100) // 10
-    first_digit = num % 10
-
-    if thrid_digit:
-        words = num_to_words_map[thrid_digit] + " hundred"
-        if second_digit or first_digit:
-            words += " and "
-
-    if second_digit == 1:
-        words += num_to_words_map[second_digit * 10 + first_digit]
-    elif second_digit:
-        words += num_to_words_map[second_digit * 10]
+    if num in two_digit_base_words:
+        words = two_digit_base_words[num]
+    else:
+        second_digit = num // 10
+        tens = ""
+        if second_digit:
+            tens = two_digit_base_words[second_digit * 10]
+        first_digit = num % 10
+        ones = ""
         if first_digit:
-            words += " "
+            ones = two_digit_base_words[first_digit]
+        if tens and ones:
+            words = tens + " " + ones
+        else:
+            words = tens + ones
 
-    if first_digit and second_digit != 1:
-        words += num_to_words_map[first_digit]
+    return words
+
+
+def three_digit_num_to_words(num):
+    """Converts a 3-digit number `num` to its written words.
+
+    Args:
+        `num`: Integer between 0 and 999 (inclusive).
+    Returns:
+        Number writtin in words as a string.
+    Raises:
+        ValueError: For out of range `num`.
+    """
+    if num < 0 or num > 999:
+        raise ValueError("Number must be between 0 and 1000.")
+
+    third_digit = num // 100
+    num = num % 100
+    if third_digit:
+        hundreds = two_digit_base_words[third_digit] + " hundred"
+    tens_ones = two_digit_num_to_words(num)
+    if third_digit and num:
+        words = hundreds + " and " + tens_ones
+    elif third_digit:
+        words = hundreds
+    else:
+        words = tens_ones
 
     return words

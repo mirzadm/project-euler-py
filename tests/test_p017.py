@@ -2,24 +2,34 @@
 
 import unittest
 
-from src.p017 import num_to_words
+from src.p017 import (
+    two_digit_num_to_words as two_digit,
+    three_digit_num_to_words as three_digit,
+)
 
 
 class TestP017(unittest.TestCase):
 
-    def test_num_to_words(self):
-        self.assertRaises(ValueError, num_to_words, -1)
-        self.assertRaises(ValueError, num_to_words, 1001)
-        self.assertEqual(num_to_words(0), "zero")
-        self.assertEqual(num_to_words(10), "ten")
-        self.assertEqual(num_to_words(11), "eleven")
-        self.assertEqual(num_to_words(20), "twenty")
-        self.assertEqual(num_to_words(29), "twenty nine")
-        self.assertEqual(num_to_words(99), "ninety nine")
-        self.assertEqual(num_to_words(100), "one hundred")
-        self.assertEqual(num_to_words(101), "one hundred and one")
-        self.assertEqual(num_to_words(110), "one hundred and ten")
-        self.assertEqual(num_to_words(111), "one hundred and eleven")
-        self.assertEqual(num_to_words(199), "one hundred and ninety nine")
-        self.assertEqual(num_to_words(999), "nine hundred and ninety nine")
-        self.assertEqual(num_to_words(1000), "one thousand")
+    def test_two_digit(self):
+        self.assertRaises(ValueError, two_digit, -1)
+        self.assertRaises(ValueError, two_digit, 100)
+        self.assertEqual(two_digit(0), "zero")
+        self.assertEqual(two_digit(10), "ten")
+        self.assertEqual(two_digit(11), "eleven")
+        self.assertEqual(two_digit(20), "twenty")
+        self.assertEqual(two_digit(29), "twenty nine")
+        self.assertEqual(two_digit(99), "ninety nine")
+
+    def test_three_digit(self):
+        self.assertRaises(ValueError, three_digit, -1)
+        self.assertRaises(ValueError, three_digit, 1000)
+        self.assertEqual(three_digit(0), "zero")
+        self.assertEqual(three_digit(10), "ten")
+        self.assertEqual(three_digit(11), "eleven")
+        self.assertEqual(three_digit(20), "twenty")
+        self.assertEqual(three_digit(29), "twenty nine")
+        self.assertEqual(three_digit(99), "ninety nine")
+        self.assertEqual(three_digit(100), "one hundred")
+        self.assertEqual(three_digit(101), "one hundred and one")
+        self.assertEqual(three_digit(111), "one hundred and eleven")
+        self.assertEqual(three_digit(999), "nine hundred and ninety nine")
