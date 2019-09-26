@@ -1,4 +1,4 @@
-"""Project Euler: Problem 16"""
+"""Project Euler: Problem 17"""
 
 
 two_digit_base_words = {
